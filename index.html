@@ -3,35 +3,36 @@
 <head>
 	<meta charset="utf-8">
 	<script>
-		function setSearchEngine(){
+		function setSearchEngine() {
 			let actionURL;
-			let query = document.getElementById('query');
 			let engine = document.querySelector('input[name=engine]:checked');
+			let query = document.getElementById('query');
 			let actions = {
-				google: 'https://www.google.com',
-				bing: 'https://www.bing.com',
+				google: 'https://www.google.com/search',
+				bing: 'https://www.bing.com/search/',
 				duckDuckGo: 'https://www.duckduckgo.com',
-				ask: 'https://www.ask.com',
+				ask: 'https://www.ask.com/web',
 			};
 			actionURL = actions[engine.value];
-			if(query.value === "") {
-				alert('Please enter a search term');
-			} else {
 			document.getElementById('searchForm').setAttribute('action', actionURL)
-			}
 		};
 
     window.addEventListener("submit", function(event){ 
-		setSearchEngine();
+		let query = document.getElementById("query");
+		if (query.value === "") {
+				alert('Please enter a search term');
+				document.getElementById('searchForm');
+		} else {
+			setSearchEngine();
+		}
     });
+
 	</script>
-
-
 </head>
 
 <body>
 
-	<form id="searchForm" method ="post">
+	<form id="searchForm" method ="get">
 	<label><input type="text" name="q" id="query"></label>
 	<label>Google<input type="radio" name="engine" value="google"></label>
 	<label>DuckDuckGo<input type="radio" name="engine" value="duckDuckGo"></label>
